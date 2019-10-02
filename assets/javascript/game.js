@@ -1,35 +1,5 @@
-//Letter array
-var letter = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z"
-];
-
-//Word array
-var words = [
+//Array of words.
+var wordArray = [
   "NIRVANA",
   "METALLICA",
   "EVERCLEAR",
@@ -37,76 +7,84 @@ var words = [
   "SILVERCHAIR",
   "TOOL"
 ];
-document.getElementById("lettersAvailable").innerText = letter;
 
-var win = false;
-var worngAnswer;
+var word;
+var correctGuesses;
+var wrongGuesses;
+var remainingGuesses;
 
-let guessedLetters = []; // Stores the letters the user guessed
-document.getElementById("guessedLetters").innerHTML = guessedLetters;
+// Id links to index.html
+var wordElement = document.getElementById("word");
+var letterCountElement = document.getElementById("letterCount");
+var lettersGuessedElement = document.getElementById("lettersGuessed");
+var messageElement = document.getElementById("message"); //link messages to here
 
-var remainingGuesses = 13; // How many tries the player has left
-document.getElementById("remainingGuesses").innerText = remainingGuesses;
+// Starts the game, clears arrays for next word and resets the guesses counter
+function startGame() {
+  word = getRandom(wordArray);
+  correctGuesses = [];
+  wrongGuesses = [];
+  remainingGuesses = 13;
 
-// Show wins on page
-var wins = 0;
-document.getElementById("totalWins").innerText = wins;
+  // Gets a random word from wordArray
+  function getRandom(word) {
+    return word[Math.floor(Math.random() * word.length)];
+  }
 
-// Pick a random word
-var word = words[Math.floor(Math.random() * words.length)];
+  // Push underscores over random word
+  for (var i = 0; i < word.length; i++) {
+    correctGuesses.push("_");
+  }
 
-// Hide word with underscores
-var hideAnswer = [];
-for (var i = 0; i < word.length; i++) {
-  hideAnswer[i] = "_";
-  document.getElementById("word").innerText = hideAnswer.join(" ");
+  wordElement.innerHTML = correctGuesses.join(" ");
+  letterCountElement.innerHTML = remainingGuesses;
 }
 
-//key function which only allows letters a-z and also shows warning if wrong key is pressed
+//Remaining guesses counter function
+function updateGuesses(letter) {
+  remainingGuesses--;
+  letterCountElement.innerHTML = remainingGuesses;
+
+  //If else checking if letter (users guess) is in the word or not
+  if (word.indexOf(letter) === -1) {
+    wrongGuesses.push(letter);
+    lettersGuessedElement.innerHTML = wrongGuesses.join(" ");
+  } else {
+    for (var i = 0; i < word.length; i++) {
+      if (word[i] === letter) {
+        correctGuesses[i] = letter;
+      }
+    }
+
+    wordElement.innerHTML = correctGuesses.join(" ");
+  }
+}
+
+function winOrLoss() {
+  if (correctGuesses.indexOf("_") === -1) {
+    alert("You Won!"); //Temp win alert
+    startGame();
+  } else if (remainingGuesses === 0) {
+    alert("You Lost!"); //Temp loss alert
+    startGame();
+  }
+}
 
 document.onkeyup = function(event) {
-  if (event.keyCode >= 65 && event.keyCode <= 90) {
-    var userGuess = event.key.toUpperCase();
-  } else {
-    var warning = "You can only use letters (a - z)";
-    document.getElementById("warning").innerText = warning.toUpperCase();
-  }
-
-  //userGuess check
-
-  if (word.indexOf(userGuess) > -1) {
-    for (var j = 0; j < word.length; j++) {
-      if (word[j] === userGuess) {
-        hideAnswer[j] = userGuess;
-        document.getElementById("word").innerText = hideAnswer.join(" ");
-        // vvvvvvvv NOT WORKING CORRECTLY vvvvvvvv
-      } else if (word[j] != userGuess);
-      guessedLetters[j] = userGuess;
-      document.getElementById("guessedLetters").innerText = guessedLetters.join(
-        " "
-      );
-    }
-  }
-
-  // *****TEST LOGS*****
-  console.log(word);
-  console.log(userGuess);
-  //console.log(hideAnswer);
-  //console.log(letter);
-  //console.log(guessedLetters);
-
-  //Win/loss check
-
-  if (hideAnswer.indexOf("_") <= 0) {
-    let win = true;
-    //console.log(win);
-    if (win == true) {
-      wins = +1;
-    }
-    document.getElementById("totalWins").innerText = wins;
-  } else if (remainingGuesses <= 0) {
-    //console.log(remainingGuesses);
-    alert("User Lost!");
-    //console.log(remainingGuesses);
-  }
+  var letterGuessed = String.fromCharCode(event.keyCode).toUpperCase();
+  updateGuesses(letterGuessed);
+  winOrLoss();
 };
+
+startGame();
+
+// STILL NEED
+// Setup the press any key to get started function.
+// Win counter needs to be finished.
+// Win message added to message Id link.
+// add conditions to stop the same letter being selected - with a message tied to it.
+// add conditions to only allow chars a - z to be used.
+// setup remaingingGuesses to be word.length * 3
+// music to play on win.
+// picture to change on win.
+// startGame function is not clearing the wrongGuesses array until first guess of the next game...

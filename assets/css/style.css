@@ -5,7 +5,7 @@
   padding: 15px;
 }
 
-.messageLine {
+.messageContainer {
   min-width: 850px;
   background-color: rgb(102, 101, 101);
   text-align: center;
@@ -18,8 +18,8 @@
   margin: auto;
 }
 
-.content {
-  height: 800px;
+.imageContainer {
+  height: 600px;
   width: 400px;
   float: left;
   background-color: blue;
@@ -29,7 +29,7 @@
 
 .gamecontainer {
   float: right;
-  height: 800px;
+  height: 600px;
   width: 400px;
   background-color: red;
   text-align: center;
