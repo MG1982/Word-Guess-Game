@@ -12,19 +12,22 @@ var word;
 var correctGuesses;
 var wrongGuesses;
 var remainingGuesses;
+var message;
+var score = 0;
 
 // Id links to index.html
 var wordElement = document.getElementById("word");
 var letterCountElement = document.getElementById("letterCount");
 var lettersGuessedElement = document.getElementById("lettersGuessed");
 var messageElement = document.getElementById("message"); //link messages to here
+var scoreElement = document.getElementById("totalWins");
 
 // Starts the game, clears arrays for next word and resets the guesses counter
 function startGame() {
   word = getRandom(wordArray);
   correctGuesses = [];
   wrongGuesses = [];
-  remainingGuesses = 13;
+  remainingGuesses = word.length + 4;
 
   // Gets a random word from wordArray
   function getRandom(word) {
@@ -40,15 +43,13 @@ function startGame() {
   letterCountElement.innerHTML = remainingGuesses;
 }
 
-//Remaining guesses counter function
+//If else checking if letter (users guess) is in the word or not & Remaining guesses decrement
 function updateGuesses(letter) {
-  remainingGuesses--;
-  letterCountElement.innerHTML = remainingGuesses;
-
-  //If else checking if letter (users guess) is in the word or not
-  if (word.indexOf(letter) === -1) {
+  if (word.indexOf(letter) === -1 && wrongGuesses.indexOf(letter) === -1) {
     wrongGuesses.push(letter);
     lettersGuessedElement.innerHTML = wrongGuesses.join(" ");
+    remainingGuesses--;
+    letterCountElement.innerHTML = remainingGuesses;
   } else {
     for (var i = 0; i < word.length; i++) {
       if (word[i] === letter) {
@@ -59,32 +60,36 @@ function updateGuesses(letter) {
     wordElement.innerHTML = correctGuesses.join(" ");
   }
 }
-
+// Win/Loss check and Messages/Reset
 function winOrLoss() {
   if (correctGuesses.indexOf("_") === -1) {
-    alert("You Won!"); //Temp win alert
+    message = "YOU WON! - NOW PLAYING: " + word;
+    messageElement.innerHTML = message;
     startGame();
+    score++;
+    scoreElement.innerHTML = score;
   } else if (remainingGuesses === 0) {
-    alert("You Lost!"); //Temp loss alert
+    message = "YOU FAILED! - TRY AGAIN";
+    messageElement.innerHTML = message;
     startGame();
   }
 }
-
+// Key event function that only allows keys A to Z inputs
 document.onkeyup = function(event) {
-  var letterGuessed = String.fromCharCode(event.keyCode).toUpperCase();
-  updateGuesses(letterGuessed);
-  winOrLoss();
+  if (event.keyCode >= 65 && event.keyCode <= 90) {
+    letterGuessed = event.key.toUpperCase();
+    updateGuesses(letterGuessed);
+    winOrLoss();
+  } else {
+    message = "YOU CAN ONLY USE LETTERS A - Z";
+    messageElement.innerHTML = message;
+  }
 };
 
 startGame();
 
-// STILL NEED
+// STILL NEED TO DO...
 // Setup the press any key to get started function.
-// Win counter needs to be finished.
-// Win message added to message Id link.
-// add conditions to stop the same letter being selected - with a message tied to it.
-// add conditions to only allow chars a - z to be used.
-// setup remaingingGuesses to be word.length * 3
+// add condition to stop the same letter being selected - with a message tied to it (use same message div for the A - Z warning message)
 // music to play on win.
 // picture to change on win.
-// startGame function is not clearing the wrongGuesses array until first guess of the next game...
