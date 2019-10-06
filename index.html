@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" initial-scale="1.0" />
-    
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Covered+By+Your+Grace|Michroma&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   
@@ -13,8 +13,7 @@
     
     <div class="title">
       <h1>WORD GUESS GAME</h1>
-      <br />
-      <h2>90'S BANDS</h2>
+      <h2>90'S ALT ROCK BANDS</h2>
     </div>
 
     <div class="messageContainer">
@@ -23,37 +22,45 @@
 
     <div class="wrapper">
       <div class="imageContainer">
-        <img id="image" src="#" style="width: 350px" />
-      </div>
 
+      <img id ="image" src="assets/images/1994-best-albums.jpg" width= 350px alt= "90's Alt Rock!"/>
+    </div>
     <div class="gamecontainer">
-        <h4>PRESS ANY KEY TO GET STARTED!</h4>        
+        <h4>GUESS A KEY FROM A - Z TO GET STARTED!</h4>        
+        <br>
         <br>
 
         <h4>WINS:</h4>
         <br>
-        <span id="totalWins"></span>
+        <h6><span id="totalWins"></span></h6>
         <br>
         <br>
     <h5>CURRENT WORD
         <br>
         <br>
+        <br>
         <span id="word"></span>
     </h5>    
+        <br>
         <br>
     
     <h4>NUMBER OF GUESSES REMAINING
         <br>
         <br>
-        <span id="letterCount">
+        <h6><span id="letterCount"></h6>
     </h4>
         <br>
 
     <h4>LETTERS ALREADY GUESSED
         <br>
-        <span id="lettersGuessed"></span>
+        <br>
+      <h6><span id="lettersGuessed"></span></h6>
     </h4>
-
+    <br>
+    
+    <h4>
+        <span id="warning"></span>
+    </h4>
     </div>
     </div>
     <script type="text/javascript" src="assets/javascript/game.js"></script>

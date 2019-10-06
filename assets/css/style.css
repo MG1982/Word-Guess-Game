@@ -1,15 +1,57 @@
+body {
+  background-image: url("../images/DocBG.png");
+  background-repeat: repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+}
+
+h1 {
+  font-family: "Michroma", sans-serif;
+  font-size: 55px;
+  color: #1f1f1f;
+}
+
+h2 {
+  font-family: "Covered By Your Grace", cursive;
+  color: #ff0000;
+}
+
+#word {
+  font-family: "Comfortaa", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  border: dotted 1px red;
+  padding: 20px 40px;
+}
+
+h6 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#warning {
+  color: red;
+  font-weight: bold;
+}
+
 .title {
   min-width: 850px;
-  background-color: grey;
+  background-color: #ffffff;
   text-align: center;
   padding: 15px;
+  border-bottom: solid 5px #777777;
+  font-size: 40px;
 }
 
 .messageContainer {
   min-width: 850px;
-  background-color: rgb(102, 101, 101);
+  height: 30px;
+  font-size: 30px;
+  background-color: #303030;
+  color: #ffffff;
   text-align: center;
-  padding: 15px;
+  padding: 10px;
+  border-bottom: solid 5px #777777;
 }
 
 .wrapper {
@@ -19,22 +61,24 @@
 }
 
 .imageContainer {
-  height: 600px;
-  width: 400px;
+  height: 400px;
+  width: 350px;
   float: left;
-  background-color: blue;
-  padding: 20px 5px;
-  border: Solid 10px green;
+  background-color: #ffffff;
+  padding: 20px;
+  border: solid 5px #777777;
+  margin: 20px 20px;
 }
 
 .gamecontainer {
   float: right;
-  height: 600px;
-  width: 400px;
-  background-color: red;
+  height: 400px;
+  width: 350px;
+  background-color: #ffffff;
   text-align: center;
-  padding: 20px 5px;
-  border: Solid 10px green;
+  padding: 20px;
+  border: solid 5px #777777;
+  margin: 20px 20px;
 }
 
 #word {
