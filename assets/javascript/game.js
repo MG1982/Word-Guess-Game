@@ -1,5 +1,22 @@
 //Array of words.
-let wordArray = ["EVERCLEAR", "METALLICA", "NIRVANA", "SILVERCHAIR", "TOOL"];
+let wordArray = [
+  "BLUR",
+  "CAKE",
+  "EVERCLEAR",
+  "DEFTONES",
+  "FILTER",
+  "INCUBUS",
+  "KORN",
+  "METALLICA",
+  "NIRVANA",
+  "POWDERFINGER",
+  "RADIOHEAD",
+  "RAMMSTEIN",
+  "SEVENDUST",
+  "SILVERCHAIR",
+  "SOULFLY",
+  "TOOL"
+];
 
 let word;
 let correctGuesses;
@@ -18,17 +35,20 @@ const messageElement = document.getElementById("message");
 const scoreElement = document.getElementById("totalWins");
 const warningElement = document.getElementById("warning");
 
-// Starts/restarts the game, clears arrays for next word and resets the guesses counter
+// Starts/Restarts the game, clears arrays for next word and resets the guesses counter
 function startGame() {
   wrongGuesses = [];
   word = getRandom(wordArray);
   correctGuesses = [];
   remainingGuesses = word.length + 4;
+  warning = [];
+  warningElement.innerHTML = warning;
 
   // Gets a random word from wordArray
   function getRandom(word) {
     return word[Math.floor(Math.random() * word.length)];
   }
+  // console.log(word); <---- if you want to cheat...
 
   // Push underscores over random word
   for (let i = 0; i < word.length; i++) {
@@ -39,6 +59,7 @@ function startGame() {
   letterCountElement.innerHTML = remainingGuesses;
 }
 
+// Warning message for duplicate guesses
 function duplicateChars(letter) {
   if (correctGuesses.includes(letter) || wrongGuesses.includes(letter)) {
     warning = "YOU ALREADY GUESSED THAT LETTER!";
