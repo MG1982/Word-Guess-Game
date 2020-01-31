@@ -2,10 +2,6 @@
 
 ## 90's Alt Rock/Metal Bands Theme :guitar: :metal:
 
-## UWA Full Stack Flex - Week 3 Homework Assignment
-
-## Option Two:(Challenge - Recommended)
-
 ## Built With;
 
 - HTML5
@@ -21,12 +17,8 @@
 - As the user guesses the correct letters, reveal them: m a d o \_ \_ a.
 - Number of Guesses Remaining: (# of guesses remaining for the user).
 - Letters Already Guessed: (Letters the user has guessed, displayed like L Z Y H).
-- After the user wins/loses the game should automatically choose another word and make the user play it.
-
-## Word Guess Game Bonuses:
-
-- Play a sound or song when the user guesses their word correctly, like in our demo.
-- Write some stylish CSS rules to make a design that fits your game's theme.
+- After the user wins/loses the game automatically chooses another word.
+- Song is played when the user guesses their word correctly.
 
 ## link to play the game:
 
